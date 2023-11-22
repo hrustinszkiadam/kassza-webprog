@@ -1,0 +1,62 @@
+[
+   {
+      "nev": "alma",
+      "ar": 100,
+      "img": "alma.png"
+   },
+   {
+      "nev": "banan",
+      "ar": 200,
+      "img": "banan.png"
+   },
+   {
+      "nev": "zsemle",
+      "ar": 150,
+      "img": "zsemle.png"
+   },
+   {
+      "nev": "padlizsan",
+      "ar": 400,
+      "img": "padlizsan.png"
+   },
+   {
+      "nev": "turorudi",
+      "ar": 260,
+      "img": "turorudi.png"
+   },
+   {
+      "nev": "majkrem",
+      "ar": 500,
+      "img": "majkrem.png"
+   },
+   {
+      "nev": "tej",
+      "ar": 450,
+      "img": "tej.png"
+   },
+   {
+      "nev": "fank",
+      "ar": 220,
+      "img": "fank.png"
+   },
+   {
+      "nev": "coca-cola",
+      "ar": 650,
+      "img": "coca-cola.png"
+   },
+   {
+      "nev": "borsodi-sor",
+      "ar": 450,
+      "img": "borsodi-sor.png"
+   },
+   {
+      "nev": "doritos",
+      "ar": 900,
+      "img": "doritos.png"
+   },
+   {
+      "nev": "mayonnaise",
+      "ar": 700,
+      "img": "mayonnaise.png"
+   }
+]
