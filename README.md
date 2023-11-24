@@ -4,10 +4,11 @@
 
 ##### A termekek.json file item mintája:
 
-```
+```json
 {
-      "nev": "*termék neve kisbetűvel, ékezet nélkül*",
-      "ar":  *termék ára egész számban*,
-      "img": "*termék neve kisbetűvel, ékezet nélkül*.png"  => img mappába elhelyezni
+	"id": *termék sorszáma*,
+      	"nev": "*termék neve*",
+      	"ar":  *termék ára egész számban*,
+      	"img": "*termék neve kisbetűvel, ékezet nélkül*.png"  => img mappába elhelyezni
 }
 ```
