@@ -4,11 +4,19 @@
 
 ##### A termekek.json file item mintája:
 
+`"id":` - A termék sorszáma
+
+`"nev:"` - A termék neve
+
+`"ar":` - A termék ára
+
+`"img"` - A képfile neve, a képet az `img` mappában kell elhelyezni | Névadás a képnek: A termék neve kisbetűvel, egyben és ékezet nélkül
+
 ```json
 {
-	"id": *termék sorszáma*,
-	"nev": "*termék neve*",
-	"ar":  *termék ára egész számban*,
-	"img": "*termék neve kisbetűvel, ékezet nélkül*.png"  => img mappába elhelyezni
+	"id": 999,
+	"nev": "Példa Név",
+	"ar":  9999,
+	"img": "peldanev.png"
 }
 ```
