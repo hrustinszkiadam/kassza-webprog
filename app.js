@@ -1,108 +1,118 @@
-class Termek {
-   constructor(id, nev, ar, img) {
+class Item {
+   constructor(id, name, price, img) {
       this.id = id;
-      this.nev = nev[0].toUpperCase() + nev.slice(1).toLowerCase();
-      this.ar = ar;
+      this.name = name[0].toUpperCase() + name.slice(1).toLowerCase();
+      this.price = price;
       this.img = img;
-      this.mennyiseg = 0;
+      this.quantity = 0;
    }
 
    build() {
-      return `<input type="image" name="termek-${this.id}" alt="${this.nev}" src="./img/${this.img}" class="col-1 img-fluid"></input>`;
+      return `<input type="image" name="item-${this.id}" alt="${this.name}" src="./img/${this.img}" class="col-1 img-fluid">`;
    }
 
-   buildKosar() {
-      return `<li class="col-4 d-inline-block"><img class="col-3 img-fluid" src="./img/${this.img}" alt="${this.nev}"/><label><span>${this.nev}</span><br>Mennyiség: <input type="number" name="termek-${this.id}" value="0"></input><p>Ár/db: ${this.ar} FT  | <span id="termek-${this.id}-ar"></span></p></label></li>`;
+   buildCart() {
+      return (
+         `<li class="col-3 d-inline-block">
+            <img class="col-3 img-fluid" src="./img/${this.img}" alt="${this.name}"/>
+            <label class="col-8">
+               ${this.name}
+               <br>
+               Mennyiség: <input type="number" name="item-${this.id}" value="0">
+               <p>
+                  Ár/db: ${this.price} FT  | <span id="item-${this.id}-ar"></span>
+               </p>
+            </label>
+         </li>`
+      );
    }
 }
 
 //#region INIT
-const termekekForm = document.querySelector("#termekek");
+const items = [];
+const cart = [];
 
-const kosarForm = document.querySelector("#kosar");
-const kosarLista = document.querySelector("#kosar-lista");
-const vegOsszegText = document.querySelector("#vegosszeg");
+const itemForm = document.querySelector("#items-form");
+const cartForm = document.querySelector("#cart-form");
+const cartList = document.querySelector("#cart-list");
+const finalPriceText = document.querySelector("#final-price");
 
-const termekek = [];
-const kosar = [];
+document.addEventListener("DOMContentLoaded", () => {
+   getItems()
+      .then(() => items.forEach(item => itemForm.innerHTML += item.build()));
 
-document.addEventListener("DOMContentLoaded", async () => {
-   await getTermekek();
-   kosarForm.style.display = "none";
+   cartForm.style.display = "none";
 });
 //#endregion
 
-const getTermekek = () => {
-   fetch('./termekek.json')
-      .then(response => response.json())
-      .then(data => {
-         data.forEach(termek => {
-            termekek.push(new Termek(termek.id, termek.nev, termek.ar, termek.img));        
-         });
-         termekek.forEach(termek => {
-            termekekForm.innerHTML += termek.build();
-         });
-      });
-};
-
-const addToKosar = (termek) => {
-   if(!kosar.includes(termek)) {
-      kosar.push(termek);
-      kosarLista.innerHTML += termek.buildKosar();
+const getItems = async () => {
+   try {
+      await fetch('./items.json')
+         .then(response => response.json())
+         .then(data => data.forEach(item => items.push(new Item(item.id, item.name, item.price, item.img))));
+   } catch (err) {
+      console.warn(err);
    }
-   updateTermek(termek, 1);
 };
 
-const updateTermek = (termek, mennyisegIncrement = 0) => {
-   termek.mennyiseg = parseInt(kosarLista.querySelector(`input[name="termek-${termek.id}"]`).value) + mennyisegIncrement;
-   updateKosar();
+const addToCart = (item) => {
+   if(!cart.includes(item)) {
+      cart.push(item);
+      cartList.innerHTML += item.buildCart();
+   }
+   updateItem(item, 1);
+};
+
+const updateItem = (item, quantityIncrement = 0) => {
+   item.quantity = parseInt(cartList.querySelector(`input[name="item-${item.id}"]`).value) + quantityIncrement;
+   updateCart();
 }
 
-const updateKosar = () => {
-   kosar.forEach(termek => {
-      kosarLista.querySelector(`input[name="termek-${termek.id}"]`).value = termek.mennyiseg;
-      kosarLista.querySelector(`#termek-${termek.id}-ar`).innerHTML = `Összesen: ${termek.mennyiseg * termek.ar} Ft`;
+const updateCart = () => {
+   cart.forEach(item => {
+      cartList.querySelector(`input[name="item-${item.id}"]`).value = item.quantity;
+      cartList.querySelector(`#item-${item.id}-ar`).innerHTML = `Összesen: ${item.quantity * item.price} Ft`;
    });
 };
 
-const clearKosar = () => {
-   kosar.forEach(termek => {
-      termek.mennyiseg = 0;
+const clearCart = () => {
+   cart.forEach(item => {
+      item.quantity = 0;
    });
-   kosar.splice(0, kosar.length);
+   cart.splice(0, cart.length);
 
-   kosarLista.innerHTML = "";
-   kosarForm.reset();
+   cartList.innerHTML = "";
+   cartForm.reset();
 };
 
-const getVegosszeg = () => kosar.reduce((sum, termek) => sum + termek.mennyiseg * termek.ar, 0);
+const getFinalPrice = () => cart.reduce((sum, item) => sum + item.quantity * item.price, 0);
 
 //click on item
-termekekForm.addEventListener("click", (event) => {
+itemForm.addEventListener("click", (event) => {
    if (event.target.type === "image") {
       event.preventDefault();
 
-      addToKosar(termekek.find(termek => `termek-${termek.id}` === event.target.name));
+      addToCart(items.find(item => `item-${item.id}` === event.target.name));
 
-      kosarForm.style.display = kosarForm.style.display === "none" ? "block" : null;
-      vegOsszegText.innerHTML = "Kosár tartalma:";
+      cartForm.style.display = cartForm.style.display === "none" ? "block" : null;
+      finalPriceText.innerHTML = "Kosár tartalma:";
    }
 });
 
 //updated quantity in the cartForm (not by clicking on the item)
-kosarForm.addEventListener("change", (event) => {
+cartForm.addEventListener("change", (event) => {
    if (event.target.type === "number") {
       event.preventDefault();
 
-      updateTermek(termekek.find(termek => `termek-${termek.id}` === event.target.name));
+      updateItem(items.find(item => `item-${item.id}` === event.target.name));
    }
 });
 
 //payment
-kosarForm.addEventListener("submit", (event) => {
+cartForm.addEventListener("submit", (event) => {
    event.preventDefault();
    
-   vegOsszegText.innerHTML = `Fizetendő összeg: ${getVegosszeg()} Ft`;
-   kosarForm.style.display = "none";
-   clearKosar();
+   finalPriceText.innerHTML = `Fizetendő összeg: ${getFinalPrice()} Ft`;
+   cartForm.style.display = "none";
+   clearCart();
 });
