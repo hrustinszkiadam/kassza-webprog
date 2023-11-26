@@ -15,14 +15,24 @@ items.forEach(item => {
 });
 //#endregion
 
+//show/hide cartForm
+const handleCartForm = (payment = false) => {
+   if (payment) {
+      finalPriceText.innerHTML = `Fizetendő összeg: ${getFinalPrice()} Ft`;
+      cartForm.style.display = "none";
+      cartForm.reset();
+      return;
+   }
+   cartForm.style.display = cartForm.style.display === "none" ? "block" : null;
+   finalPriceText.innerHTML = "Kosár tartalma:";
+}
+
 //click on item
 itemForm.addEventListener("click", (event) => {
    event.preventDefault();
    if (event.target.type === "image") {
 
-      cartForm.style.display = cartForm.style.display === "none" ? "block" : null;
-      finalPriceText.innerHTML = "Kosár tartalma:";
-      
+      handleCartForm();
       addToCart(cartList, items.find(item => `item-${item.id}` === event.target.name));
    }
 });
@@ -31,9 +41,7 @@ selectItemForm.addEventListener("change", (event) => {
    event.preventDefault();
    if (event.target.type === "select-one") {
 
-      cartForm.style.display = cartForm.style.display === "none" ? "block" : null;
-      finalPriceText.innerHTML = "Kosár tartalma:";
-      
+      handleCartForm();
       addToCart(cartList, items.find(item => `item-${item.id}` === event.target.value));
    }
 });
@@ -51,9 +59,6 @@ cartForm.addEventListener("change", (event) => {
 cartForm.addEventListener("submit", (event) => {
    event.preventDefault();
    
-   finalPriceText.innerHTML = `Fizetendő összeg: ${getFinalPrice()} Ft`;
-   cartForm.style.display = "none";
-   cartForm.reset();
-
+   handleCartForm(true);
    clearCart(cartList);
 });
