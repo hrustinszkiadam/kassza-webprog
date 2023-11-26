@@ -70,15 +70,11 @@ const addToCart = (item) => {
 
 const updateItem = (item, quantityIncrement = 0) => {
    item.quantity = parseInt(cartList.querySelector(`input[name="item-${item.id}"]`).value) + quantityIncrement;
-   updateCart();
-}
-
-const updateCart = () => {
    cart.forEach(item => {
       cartList.querySelector(`input[name="item-${item.id}"]`).value = item.quantity;
       cartList.querySelector(`#item-${item.id}-ar`).innerHTML = `Összesen: ${item.quantity * item.price} Ft`;
    });
-};
+}
 
 const clearCart = () => {
    cart.forEach(item => {
