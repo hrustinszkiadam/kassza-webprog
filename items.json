@@ -1,74 +1,77 @@
-[
-   {
-      "id": 1,
-      "name": "alma",
-      "price": 100,
-      "img": "alma.png"
-   },
-   {
-      "id": 2,
-      "name": "banán",
-      "price": 200,
-      "img": "banan.png"
-   },
-   {
-      "id": 3,
-      "name": "zsemle",
-      "price": 150,
-      "img": "zsemle.png"
-   },
-   {
-      "id": 4,
-      "name": "padlizsán",
-      "price": 400,
-      "img": "padlizsan.png"
-   },
-   {
-      "id": 5,
-      "name": "túrórudi",
-      "price": 260,
-      "img": "turorudi.png"
-   },
-   {
-      "id": 6,
-      "name": "májkrém",
-      "price": 500,
-      "img": "majkrem.png"
-   },
-   {
-      "id": 7,
-      "name": "tej",
-      "price": 450,
-      "img": "tej.png"
-   },
-   {
-      "id": 8,
-      "name": "fánk",
-      "price": 220,
-      "img": "fank.png"
-   },
-   {
-      "id": 9,
-      "name": "coca-cola",
-      "price": 650,
-      "img": "coca-cola.png"
-   },
-   {
-      "id": 10,
-      "name": "borsodi sör",
-      "price": 450,
-      "img": "borsodi-sor.png"
-   },
-   {
-      "id": 11,
-      "name": "doritos",
-      "price": 900,
-      "img": "doritos.png"
-   },
-   {
-      "id": 12,
-      "name": "majonéz",
-      "price": 700,
-      "img": "majonez.png"
-   }
-]
+{
+   "items":
+   [
+      {
+         "id": 1,
+         "name": "alma",
+         "price": 100,
+         "img": "alma.png"
+      },
+      {
+         "id": 2,
+         "name": "banán",
+         "price": 200,
+         "img": "banan.png"
+      },
+      {
+         "id": 3,
+         "name": "zsemle",
+         "price": 150,
+         "img": "zsemle.png"
+      },
+      {
+         "id": 4,
+         "name": "padlizsán",
+         "price": 400,
+         "img": "padlizsan.png"
+      },
+      {
+         "id": 5,
+         "name": "túrórudi",
+         "price": 260,
+         "img": "turorudi.png"
+      },
+      {
+         "id": 6,
+         "name": "májkrém",
+         "price": 500,
+         "img": "majkrem.png"
+      },
+      {
+         "id": 7,
+         "name": "tej",
+         "price": 450,
+         "img": "tej.png"
+      },
+      {
+         "id": 8,
+         "name": "fánk",
+         "price": 220,
+         "img": "fank.png"
+      },
+      {
+         "id": 9,
+         "name": "coca-cola",
+         "price": 650,
+         "img": "coca-cola.png"
+      },
+      {
+         "id": 10,
+         "name": "borsodi sör",
+         "price": 450,
+         "img": "borsodi-sor.png"
+      },
+      {
+         "id": 11,
+         "name": "doritos",
+         "price": 900,
+         "img": "doritos.png"
+      },
+      {
+         "id": 12,
+         "name": "majonéz",
+         "price": 700,
+         "img": "majonez.png"
+      }
+   ]
+}
