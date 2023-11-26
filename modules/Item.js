@@ -1,6 +1,6 @@
 export default class Item {
    constructor(id, name, price, img) {
-      name = name.split(" " || "-");
+      name = name.split(/[\s-]+/);
       if (name.length > 1) {
          name = name.map(word => word[0].toUpperCase() + word.slice(1).toLowerCase());
          this.name = name.join(" ");
@@ -12,8 +12,12 @@ export default class Item {
       this.quantity = 0;
    }
 
-   build() {
+   buildItem() {
       return `<input type="image" name="item-${this.id}" alt="${this.name}" src="./img/${this.img}" class="col-1 m-0 img-fluid">`;
+   }
+
+   buildSelect() {
+      return `<option value="item-${this.id}">${this.name}</option>`;
    }
 
    buildCart() {
