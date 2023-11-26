@@ -1,13 +1,12 @@
 class Item {
    constructor(id, name, price, img) {
-      this.id = id;
-
-      name = name.split(" ");
+      name = name.split(" " || "-");
       if (name.length > 1) {
          name = name.map(word => word[0].toUpperCase() + word.slice(1).toLowerCase());
          this.name = name.join(" ");
       } else this.name = name[0][0].toUpperCase() + name[0].slice(1).toLowerCase();
-
+      
+      this.id = id;
       this.price = price;
       this.img = img;
       this.quantity = 0;
