@@ -10,21 +10,21 @@ const cartList = document.querySelector("#cart-list");
 const finalPriceText = document.querySelector("#final-price");
 //build items
 items.forEach(item => {
-   itemForm.innerHTML += item.buildItem();
-   selectItemForm.querySelector("#items-select").innerHTML += item.buildSelect();
+   itemForm.appendChild(item.buildItem());
+   selectItemForm.querySelector("#items-select").appendChild(item.buildSelect());
 });
 //#endregion
 
 //show/hide cartForm
 const handleCartForm = (payment = false) => {
    if (payment) {
-      finalPriceText.innerHTML = `Fizetendő összeg: ${getFinalPrice()} Ft`;
+      finalPriceText.textContent = `Fizetendő összeg: ${getFinalPrice()} Ft`;
       cartForm.style.display = "none";
       cartForm.reset();
       return;
    }
    cartForm.style.display = cartForm.style.display === "none" ? "block" : null;
-   finalPriceText.innerHTML = "Kosár tartalma:";
+   finalPriceText.textContent = "Kosár tartalma:";
 }
 
 //click on item
